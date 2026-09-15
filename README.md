@@ -21,10 +21,47 @@ The workbook has four sheets:
 
 - `Roadmap` — topics in columns A–G, progress in H–L. Column L is a read-only
   summary of the question threads, e.g. "1 open of 2".
+- `Links` — reference material per module, one row per link. `Stage` must match
+  a `Stage` value on the Roadmap sheet exactly.
 - `Questions` — one row per message. A `Question` row followed by its `Comment`
   rows, grouped by `Topic` and `Thread`. `Status` is `Open` or `Clear`.
 - `People` — the two names in the page header, under `Explaining` and `Learning`.
 - `How to use` — the notes above, in the file itself.
+
+## Reference material
+
+Each module carries a strip of saved links above its topics. The explainer adds
+them with **Add links** — a name, a link or a pointer such as "Internal -
+runbook", and an optional line on why it matters. The learner sees the strip and
+can open anything on it, but cannot change the list. Only `http` and `https`
+addresses become clickable; anything else is kept as plain text, and a bare
+domain gets `https://` added for you.
+
+## Roles and signing in
+
+**Learner** is the default: set your own confidence level, ask questions, and mark
+one clear when it is. **Explainer** marks topics as explained, answers questions,
+and edits the content — it asks for a user name and password, both `admin` by
+default, set as `ADMIN_USER` and `ADMIN_PASS` near the top of `index.html`.
+
+Those credentials stop the learner editing the roadmap by accident. They are not
+security: the page is public, so anyone can read them in the source. Never put a
+real password there, and don't rely on it to protect anything.
+
+## Editing the content (explainer mode)
+
+- **Edit** on any topic row opens its name, what to cover, type, resource and
+  note, with a delete option. Renaming a topic carries its progress and its
+  question threads across.
+- **Add a topic to this module** at the foot of each module, and **Add a module**
+  at the foot of the board.
+- **Edit module** renames a module or rewrites its goal; deleting one removes its
+  topics and their progress, after a confirmation.
+- **Add links** keeps the reference material for a module — label, address and an
+  optional note. Only `http` and `https` addresses become clickable.
+
+Content edits commit like any other change, and a pull will not overwrite edits
+you have not committed yet.
 
 ## Questions and answers
 

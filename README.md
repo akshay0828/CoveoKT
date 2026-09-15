@@ -11,10 +11,29 @@ explained, the other sets their own level once they can do it unaided.
 | `index.html` | The page. No build step, no dependencies to install. |
 | `coveo-kt-tracker.xlsx` | Topics **and** progress. The only source of both. |
 
-The page carries no built-in topic list. Until the workbook is read it shows an
-empty state asking you to connect or open a copy, so what you see is always what
-is committed. It also refuses to commit or export while nothing is loaded, which
-stops an empty board overwriting the workbook.
+The page carries no topic list of its own and no local-file fallback. The
+**Roadmap** tab stays disabled until the workbook has been read from the
+repository, so what you see is always what is committed. It also refuses to
+commit or export while nothing is loaded, which stops an empty board overwriting
+the workbook. **Forget token** closes the roadmap again.
+
+The workbook has four sheets:
+
+- `Roadmap` — topics in columns A–G, progress in H–L. Column L is a read-only
+  summary of the question threads, e.g. "1 open of 2".
+- `Questions` — one row per message. A `Question` row followed by its `Comment`
+  rows, grouped by `Topic` and `Thread`. `Status` is `Open` or `Clear`.
+- `People` — the two names in the page header, under `Explaining` and `Learning`.
+- `How to use` — the notes above, in the file itself.
+
+## Questions and answers
+
+The **Anything still unclear?** button on each topic opens a thread editor. The
+learner adds questions one at a time and decides when one is clear; the explainer
+adds comments underneath. Marking a question clear is the learner's call, so the
+explainer sees the status but cannot change it — switch **Editing as** to *Both*
+when you are working through them together. Open questions raise a flag on the
+topic row and show a count on the button.
 
 ## Publish on GitHub Pages
 
@@ -55,15 +74,11 @@ shortest expiry you can live with.
 If two people save at once, GitHub rejects the second commit; the page re-reads
 the file, merges, and commits again by itself.
 
-### Not connected: save and commit by hand
+### Saving a copy by hand
 
-1. Mark progress on the page.
-2. Click **Save to Excel**. It downloads `coveo-kt-tracker.xlsx` with the
-   progress columns filled in.
-3. Commit that file over the old one.
-
-Editing the workbook directly in Excel works equally well — the page reads
-whatever is committed.
+**Save to Excel** downloads the same workbook, progress and names included, if
+you want a copy or need to commit it yourself. Editing the workbook directly in
+Excel works equally well — the page reads whatever is committed.
 
 Saving from the page rewrites the workbook through a JavaScript library, so cell
 fills and fonts from the original are not carried over. The data is.
